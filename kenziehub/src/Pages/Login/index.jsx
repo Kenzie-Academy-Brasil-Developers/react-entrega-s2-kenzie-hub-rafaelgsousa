@@ -34,8 +34,6 @@ function Login({setAuthorized}){
             return history.push("/dashboard")
         })
         .catch((err)=>toast.errors("Email ou senha incorreto(s)!"))
-        
-
     }
 
     return (
@@ -57,7 +55,7 @@ function Login({setAuthorized}){
 
                     <Button variant="outlined" 
                     type="submit">Login</Button>
-                    <p>Se não fez cadastro vá para <Link to="/">Cadastro</Link></p>
+                    <p>Se não fez cadastro vá para <Link to="/">Signup</Link></p>
                 </Stack>
             </form>
         </>

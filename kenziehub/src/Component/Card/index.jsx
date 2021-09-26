@@ -18,7 +18,7 @@ function Card({id,title,status}){
 
     return (
         <div className="Card">
-            <h3 className="habilidade">Habilidade:{title}</h3>
+            <h3 className="habilidade">Habilidade: {title}</h3>
             <p>Nivel: {status}</p>
             <button onClick={()=>Delete}>Deletar</button>
         </div>

@@ -11,20 +11,20 @@ function Rootes(){
     useEffect(()=>{
         const token = window.localStorage.getItem("KenzieToken");
         
-        if(token){
-            return setAuthorized(true)
+        if(!token){
+            return setAuthorized(false)
         }
 
     },[authorized])
     
 
 
-    if (authorized===false){
+    if (authorized===true){
         return (
             <>
                 <Switch>
                     <Route path="/dashboard">
-                        <Dashboard />
+                        <Dashboard setAuthorized={setAuthorized} />
                     </Route>
                 </Switch>
             </>
