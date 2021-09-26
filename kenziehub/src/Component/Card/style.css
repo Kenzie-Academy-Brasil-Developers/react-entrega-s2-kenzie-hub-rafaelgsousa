@@ -1,0 +1,11 @@
+.Card {
+    width: 150px;
+    height: 150px;
+    border:1px solid black;
+    margin: 5px;
+    margin-top: 15px;
+}
+.habilidade {
+    border-bottom: 1px solid black;
+    padding: 3px;
+}

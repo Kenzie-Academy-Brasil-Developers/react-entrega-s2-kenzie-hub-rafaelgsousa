@@ -13,7 +13,7 @@ function Login({setAuthorized}){
 
     const schema = yup.object().shape({
         email:yup.string().required("Campo obrigatório!").email(),
-        password:yup.string().required("Campo obrigatório!").min(6,"Deve ter no mínimo 8 caracteres")
+        password:yup.string().required("Campo obrigatório!").min(6,"Deve ter no mínimo 6 caracteres")
         .matches(/^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
         "Senha deve ter letra maíuscula, mínuscula, numero e caracter")
     })
@@ -24,15 +24,17 @@ function Login({setAuthorized}){
         console.log(data)
         api.post("/sessions",data)
         .then((resp)=>{
-            const {token, user} = resp.data;
 
-            localStorage.setItem("KenzieToken", JSON.stringify(token));
-            localStorage.setItem("KenzieUser", JSON.stringify(user));
+            localStorage.clear();
+
+            localStorage.setItem("KenzieToken", resp.data.token);
+            localStorage.setItem("KenzieUser", resp.data.user);
             setAuthorized(true)
             toast.success("Logando!")
             return history.push("/dashboard")
         })
         .catch((err)=>toast.errors("Email ou senha incorreto(s)!"))
+        
 
     }
 
@@ -49,7 +51,7 @@ function Login({setAuthorized}){
 
                     <TextField id="outlined-basic"
                     label="Password" variant="outlined" 
-                    size="small" 
+                    size="small" {...register("password")}
                     error={!!errors.password} type="password"
                     helperText={errors.password?.message}/>
 

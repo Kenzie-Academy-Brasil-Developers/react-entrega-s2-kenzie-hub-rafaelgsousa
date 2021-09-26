@@ -1,0 +1,29 @@
+.Container {
+    min-width: 520px;
+    max-width: 780px;
+    padding: 0 30px;
+}
+header {
+    width: 100%;
+}
+.Dados{
+    display: flex;
+    justify-content: flex-end;
+}
+.contato{
+    margin: 0 10px;
+}
+.nome {
+    margin:0 10px;
+}
+.Dados-bio {
+    text-align: left;
+}
+.list {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    border-top: 2px solid black;
+    margin-top: 15px;
+}
