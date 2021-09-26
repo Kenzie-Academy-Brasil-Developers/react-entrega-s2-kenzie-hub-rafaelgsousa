@@ -5,3 +5,9 @@ p{
 h2 {
     color:#1480fb;
 }
+form {
+    max-width: 600px;
+    min-width: 300px;
+    margin: 0 auto;
+    
+}

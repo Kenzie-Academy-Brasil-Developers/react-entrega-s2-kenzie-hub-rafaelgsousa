@@ -23,13 +23,13 @@ function Dashboard({setAuthorized}){
 
     const [token]= useState(window.localStorage.getItem("KenzieToken") || "")
 
-    //const [user] = useState(window.localStorage.getItem("KenzieUser"))
-    const [user] = useState({name:"Rafael",contact:"LinkedIn:Rafael", bio: "Videndo em paz",
+    const [user] = useState(window.localStorage.getItem("KenzieUser"))
+    /*const [user] = useState({name:"Rafael",contact:"LinkedIn:Rafael", bio: "Videndo em paz",
      techs:[{title:"JS",status:"iniciante",id:"2a75e12d-fd1c-481d-ba88-4d8b17103b2a"},
             {title:"CSS",status:"iniciante",id:"2a75e12d-fd1c-495d-ba88-4d8b17103b2a"},
             {title:"React",status:"iniciante",id:"2a75e12d-fd1c-481d-ba88-4d8b17103b2a"},
             {title:"Git",status:"iniciante",id:"2a75e12d-fd1c-481d-ba88-4d8b17103t5a"},
-            {title:"Python",status:"iniciante",id:"2a75e12d-fd1c-p31d-ba88-4d8b17103t5a"}]})
+            {title:"Python",status:"iniciante",id:"2a75e12d-fd1c-p31d-ba88-4d8b17103t5a"}]})*/
 
     const [techs,setTechs]=useState(user.techs)
 
@@ -59,8 +59,6 @@ function Dashboard({setAuthorized}){
         .catch(err=>console.log(err))
     }
 
-    //AddTech => setTechs()
-
     const onLogout = () => {
         localStorage.clear()
         setAuthorized(false)
@@ -71,12 +69,13 @@ function Dashboard({setAuthorized}){
         <div className="Container">
             <header>
                 <div className="Dados">
-                    <h3 className="nome">Nome: {user.name}</h3>
-                    <h3 className="contato"> Contato: {user.contact}</h3>
+                    <h3 className="nome">Nome: <span>{user.name}</span></h3>
+                    <h3 className="contato"> Contato: <span>{user.contact}</span></h3>
                 </div>
-                <h3 className="Dados-bio">Bio: {user.bio}</h3>
+                <h3 className="Dados-bio">Bio: <span>{user.bio}</span></h3>
             </header>
             <form onSubmit={handleSubmit(addTech)}>
+                <h3>Adicionar tecnologia: </h3>
                 <Stack spacing={1}>
                 <TextField id="outlined-basic" 
                     label="Tecnologia" variant="outlined" 
