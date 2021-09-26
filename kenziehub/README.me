@@ -1,0 +1,38 @@
+Bibliotecas:
+1 - react-router-dom ok
+2 - react-hook-form com @hookform/resolvers e yup ok
+3 - styled-components
+4 - react-toastify ok
+5 - axios ok
+6 - material ui ok
+
+Sistema de acesso:
+1- Com authentication = false :
+Pode acessar: 
+1.1 - tela de cadastro;
+1.2 - tela de login
+2- Com authentication = true :
+Pode acessar:
+2.1 - Dashboard;
+
+obs: Colocar confição onde se authentication = false a função não cria
+ a rota para o Dashboard e se authentication = true não cria rotas para
+ login e cadastro.
+
+Os endpoints usados serão:
+1- /users para cadastro
+2- /sessions para login
+3- /users/techs para criar techs
+4- /users/techs/id do usuário para alterar techs
+
+Etapas:
+1- criar telas:
+1.1 Criar rotas
+1.2 Criar funções
+1.3 cadastro
+1.4 login
+1.5 Dashboard
+
+2 - Testar request do cadastro e login conforme insomnia
+
+3 - Condições de acesso por token e login(ver video da aula 2B02 e 03 se tiver duvida e codigo do Doit)
