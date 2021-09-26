@@ -16,10 +16,11 @@ function Signup(){
         email:yup.string().required("Campo obrigatório!").email(),
         bio:yup.string().required("Campo obrigatório!"),
         contact:yup.string().required("Campo obrigatório!"),
-        password:yup.string().min(6,"Deve ter no mínimo 8 caracteres").required("Campo obrigatório!")
+        course_module:yup.string().required("Campo obrigatório!"),
+        password:yup.string().required("Campo obrigatório!").min(6,"Deve ter no mínimo 8 caracteres")
         .matches(/^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
         "Senha deve ter letra maíuscula, mínuscula, numero e caracter"),
-        passwordConfirm:yup.string().required("Item obrigatório").oneOf([yup.ref("password")],"senha incorreta")
+        passwordConfirm:yup.string().required("Compor obrigatório").oneOf([yup.ref("password")],"senha incorreta")
     })
 
 

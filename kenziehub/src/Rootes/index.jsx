@@ -1,10 +1,27 @@
+import { useState } from "react"
 import {Switch, Route} from "react-router-dom"
 import Dashboard from "../Pages/Dashboard"
 import Login from "../Pages/Login"
 import Signup from "../Pages/Signup"
 
 function Rootes(){
+
+    const [authorized,setAuthorized] = useState(false)
     
+
+
+    if (authorized===true){
+        return (
+            <>
+            <Switch>
+                <Route path="/dashboard">
+                    <Dashboard/>
+                </Route>
+            </Switch>
+            </>
+
+        )
+    } 
     return (
         <>
         <Switch>
@@ -12,11 +29,9 @@ function Rootes(){
                 <Signup/>
             </Route>
             <Route path="/login">
-                <Login/>
+                <Login setAuthorized={setAuthorized}/>
             </Route>
-            <Route path="/dashboard">
-                <Dashboard/>
-            </Route>
+            
         </Switch>
         </>)
 }

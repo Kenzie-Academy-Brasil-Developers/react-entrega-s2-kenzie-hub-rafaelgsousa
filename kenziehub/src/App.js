@@ -4,7 +4,7 @@ import Rootes from './Rootes';
 function App() {
   return (
     <>
-      <h1>Kenzie Hub</h1>
+      <h2>Kenzie Hub</h2>
         <div className="App">
           <Rootes/>
         </div>
