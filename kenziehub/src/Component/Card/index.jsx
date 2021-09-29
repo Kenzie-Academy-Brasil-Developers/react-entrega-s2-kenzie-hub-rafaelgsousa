@@ -2,7 +2,7 @@ import api from "../../service"
 import { useState } from "react"
 import "./style.css"
 
-function Card({id,title,status}){
+function Card({id,title,status,loadTechs}){
 
     const [token]= useState(JSON.parse(localStorage.getItem("@Kenziehubtoken")) || "")
     console.log(id)
@@ -12,7 +12,8 @@ function Card({id,title,status}){
         headers: {
             Authorization: `Bearer ${token}`,
             },
-        })
+        }).then((reponse)=>loadTechs())
+
     }
 
     return (

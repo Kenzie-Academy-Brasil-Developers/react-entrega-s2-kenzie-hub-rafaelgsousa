@@ -91,7 +91,7 @@ function Signup({authorized}){
                     helperText={errors.passwordConfirm?.message}/>
 
                     <Button variant="outlined" type="submit">Signup</Button>
-                    <p>Se já tenha cadastro faça <Link to="/login">Login</Link></p>
+                    <p>Se já tem cadastro vá para <Link to="/login">Login</Link></p>
                 </Stack>
             </form>
         </>

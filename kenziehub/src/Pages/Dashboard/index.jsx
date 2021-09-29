@@ -64,7 +64,7 @@ function Dashboard({setAuthorized}){
             <header>
                 <div className="Dados">
                     <h3 className="nome">Nome: <span>{user.name}</span></h3>
-                    <h3 className="contato"> Contato: <span>{user.contact}</span></h3>
+                    <h3 className="contato"> LinkeIn: <span>{user.contact}</span></h3>
                 </div>
                 <h3 className="Dados-bio">Bio: <span>{user.bio}</span></h3>
             </header>
@@ -89,7 +89,8 @@ function Dashboard({setAuthorized}){
             </form>
             
             <div className="list">
-                {!techs ? null : techs.map((e,i) => <Card key={i} title={e.title} status={e.status} id={e.id}/>)}
+                {!techs ? null : techs.map((e,i) => <Card key={i} title={e.title} 
+                status={e.status} id={e.id} loadTechs={loadTechs}/>)}
             </div>
             <div className="logout">
                 <Button variant="outlined" onClick={onLogout}>Logout</Button>
