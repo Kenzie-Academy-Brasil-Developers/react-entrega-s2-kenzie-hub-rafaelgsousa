@@ -9,17 +9,20 @@ function Rootes(){
     const [authorized,setAuthorized] = useState(false)
 
     useEffect(()=>{
-        const token = window.localStorage.getItem("KenzieToken");
+        const token = localStorage.getItem("@Kenziehubtoken");
+        console.log(`token: ${token}`)
         
         if(!token){
             return setAuthorized(false)
+            
         }
-
+        
     },[authorized])
     
-
+    console.log(authorized)
 
     if (authorized===true){
+
         return (
             <>
                 <Switch>
@@ -28,21 +31,23 @@ function Rootes(){
                     </Route>
                 </Switch>
             </>
-
         )
-    } 
-    return (
-        <>
-            <Switch>
-                <Route exact path="/">
-                    <Signup/>
-                </Route>
-                <Route path="/login">
-                    <Login setAuthorized={setAuthorized}/>
-                </Route>
-                
-            </Switch>
-        </>)
+    } else {
+
+        return (
+            <>
+                <Switch>
+                    <Route exact path="/">
+                        <Signup authorized={authorized}/>
+                    </Route>
+                    <Route path="/login" >
+                        <Login setAuthorized={setAuthorized} authorized={authorized}/>
+                    </Route>
+                    
+                </Switch>
+            </>)
+    }
+    
 }
 
 export default Rootes

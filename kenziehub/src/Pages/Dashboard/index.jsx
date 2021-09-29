@@ -15,32 +15,26 @@ function Dashboard({setAuthorized}){
 
     const schema = yup.object().shape({
         title:yup.string().required("Campo obrigatório!"),
-        status:yup.string().required("Campo obrigatório!").oneOf(["iniciante", "intermediário","avançado !"],
-        "O status deve ser iniciante, intermediário ou avançado")
+        status:yup.string().required("Campo obrigatório!").oneOf(["iniciante", "intermediário", "avançado"],
+        "O status deve ser iniciante, intermediário ou avançado !")
     })
 
     const {register,handleSubmit,formState:{errors}}= useForm({resolver:yupResolver(schema)})
 
-    const [token]= useState(window.localStorage.getItem("KenzieToken") || "")
+    const [token]= useState(JSON.parse(localStorage.getItem("@Kenziehubtoken")) || "")
 
-    const [user] = useState(window.localStorage.getItem("KenzieUser"))
-    /*const [user] = useState({name:"Rafael",contact:"LinkedIn:Rafael", bio: "Videndo em paz",
-     techs:[{title:"JS",status:"iniciante",id:"2a75e12d-fd1c-481d-ba88-4d8b17103b2a"},
-            {title:"CSS",status:"iniciante",id:"2a75e12d-fd1c-495d-ba88-4d8b17103b2a"},
-            {title:"React",status:"iniciante",id:"2a75e12d-fd1c-481d-ba88-4d8b17103b2a"},
-            {title:"Git",status:"iniciante",id:"2a75e12d-fd1c-481d-ba88-4d8b17103t5a"},
-            {title:"Python",status:"iniciante",id:"2a75e12d-fd1c-p31d-ba88-4d8b17103t5a"}]})*/
+    const [user] = useState(JSON.parse(localStorage.getItem("@KenziehubUser")))
 
     const [techs,setTechs]=useState(user.techs)
+    console.log("techs: ",techs)
 
     function loadTechs(){
-        api.get("//profile",
-        {
+        api.get("/profile",
+            {
             headers: {
                 Authorization: `Bearer ${token}`,
-            },
-        }
-        ).then((response)=>setTechs(response.data.techs))
+                },
+            }).then((response)=>setTechs(response.data.techs))
         .catch(err=>console.log(err))
     }
  
@@ -49,13 +43,13 @@ function Dashboard({setAuthorized}){
         if(!data.title || !data.status) {
             return toast.error("Complete o(s) campo para enviar uma tarefa!")
         }
-        api.post("//users/techs", data, 
+        api.post("/users/techs",data ,
         {
-            headers: {
-                Authorization: `Bearer ${token}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
             },
-        })
-        .then((_)=>loadTechs)
+        } )
+        .then((reponse)=>loadTechs())
         .catch(err=>console.log(err))
     }
 
@@ -95,10 +89,10 @@ function Dashboard({setAuthorized}){
             </form>
             
             <div className="list">
-                {techs.map((e,i) => <Card key={i} title={e.title} status={e.status} id={e.id}/>)}
+                {!techs ? null : techs.map((e,i) => <Card key={i} title={e.title} status={e.status} id={e.id}/>)}
             </div>
             <div className="logout">
-                <Button variant="outlined" onClick={()=>onLogout}>Logout</Button>
+                <Button variant="outlined" onClick={onLogout}>Logout</Button>
             </div>
             
         </div>

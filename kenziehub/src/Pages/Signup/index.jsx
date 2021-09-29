@@ -1,5 +1,5 @@
 import { TextField, Button, Stack } from "@material-ui/core"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory,Redirect } from "react-router-dom"
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,7 +7,7 @@ import "./style.css"
 import api from "../../service";
 import { toast } from "react-toastify"
 
-function Signup(){
+function Signup({authorized}){
 
     const history = useHistory()
 
@@ -36,6 +36,12 @@ function Signup(){
         })
         .catch(err=>toast.error("Erro ao criar conta!"))
     }
+
+    if(authorized) {
+        return <Redirect to="/dashboard"/>;
+    }
+
+
 
     return (
         <>

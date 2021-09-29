@@ -1,5 +1,5 @@
 import {Stack, TextField, Button} from "@material-ui/core"
-import {Link,useHistory} from "react-router-dom"
+import {Link,useHistory,Redirect} from "react-router-dom"
 import "./style.css"
 import {useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
@@ -7,7 +7,7 @@ import * as yup from "yup"
 import api from "../../service"
 import { toast } from "react-toastify"
 
-function Login({setAuthorized}){
+function Login({setAuthorized, authorized}){
 
     const history = useHistory()
 
@@ -21,19 +21,28 @@ function Login({setAuthorized}){
     const {register,handleSubmit,formState:{errors}}= useForm({resolver:yupResolver(schema)})
 
     const onLogin = (data)=>{
-        console.log(data)
+
         api.post("/sessions",data)
         .then((resp)=>{
 
+            console.log("user: ",resp.data.user)
             localStorage.clear();
 
-            localStorage.setItem("KenzieToken", resp.data.token);
-            localStorage.setItem("KenzieUser", resp.data.user);
+            const {token, user} = resp.data;
+
+            localStorage.setItem("@Kenziehubtoken", JSON.stringify(token))
+
+            localStorage.setItem("@KenziehubUser", JSON.stringify(user))
+
             setAuthorized(true)
-            toast.success("Logando!")
+
             return history.push("/dashboard")
         })
-        .catch((err)=>toast.errors("Email ou senha incorreto(s)!"))
+        .catch((err)=> console.log(err))
+    }
+
+    if(authorized) {
+        return <Redirect to="/dashboard"/>;
     }
 
     return (
