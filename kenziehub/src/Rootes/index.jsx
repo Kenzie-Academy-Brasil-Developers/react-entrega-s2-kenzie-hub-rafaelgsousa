@@ -21,7 +21,7 @@ function Rootes(){
     
     console.log(authorized)
 
-    if (authorized===true){
+    if (authorized){
 
         return (
             <>
